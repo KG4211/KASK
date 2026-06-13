@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KASK</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    .product { border: 1px solid #ccc; padding: 20px; margin: 20px; display: inline-block; width: 200px; }
+    .cart { margin-top: 20px; border: 2px solid #333; padding: 10px; }
+    button { background: #28a745; color: white; border: none; padding: 8px; cursor: pointer; }
+    button:hover { background: #218838; }
+  </style>
+</head>
+<body>
+  <h1>Welcome to KASK</h1>
+
+  <!-- Product List -->
+  <div id="products">
+    <div class="product">
+      <h3>Plastic Container Type 1</h3>
+<img src="Plastic container type 1.png" alt="Plastic container type 1 picture" width="180">
+      <p>Price: $10</p>
+      <button onclick="addToCart('Item 1', 10)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <h3>Travel Kit</h3>
+      <img src="Travel Kit.png" alt="Travel Kit picture" width="180">
+      <p>Price: $20</p>
+      <button onclick="addToCart('Item 2', 20)">Add to Cart</button>
+    </div>
+    <div class="product">
+      <h3>Plastic Bottel</h3>
+      <img src="Plastic Bottel 1.png" alt="Plastic Bottel 1 picture" width="180">
+      <p>Price: $15</p>
+      <button onclick="addToCart('Item 3', 15)">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Shopping Cart -->
+  <div class="cart">
+    <h2>Shopping Cart</h2>
+    <ul id="cart-items"></ul>
+    <p><strong>Total: $<span id="total">0</span></strong></p>
+    <button onclick="checkout()">Checkout</button>
+  </div>
+
+  <script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(item, price) {
+      cart.push({ item, price });
+      total += price;
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartList = document.getElementById('cart-items');
+      cartList.innerHTML = '';
+      cart.forEach(c => {
+        const li = document.createElement('li');
+        li.textContent = `${c.item} - $${c.price}`;
+        cartList.appendChild(li);
+      });
+      document.getElementById('total').textContent = total;
+    }
+
+    function checkout() {
+      alert("Thank you for your purchase! Total: $" + total);
+      cart = [];
+      total = 0;
+      updateCart();
+    }
+  </script>
+</body>
+</html>
+
